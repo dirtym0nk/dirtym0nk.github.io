@@ -1,5 +1,5 @@
 baseURL = 'https://dirtym0nk.github.io/'
-title = 'Мой Блог'
+title = 'Bolshoy Leha'
 theme = 'PaperMod'
 
 # Игнорировать шаблоны Obsidian
@@ -28,6 +28,11 @@ defaultContentLanguageInSubdir = false  # Русский в корне /
       url = "/tags/"
       weight = 20
 
+    [[languages.ru.menu.main]]
+      name = "Поиск"
+      url = "/search/"
+      weight = 30
+
   [languages.en]
     languageCode = 'en-US'
     languageName = 'English'
@@ -46,6 +51,11 @@ defaultContentLanguageInSubdir = false  # Русский в корне /
       url = "/en/tags/"
       weight = 20
 
+    [[languages.en.menu.main]]
+      name = "Search"
+      url = "/en/search/"
+      weight = 30
+
 [params]
   ShowReadingTime = true
   ShowShareButtons = false
@@ -53,3 +63,15 @@ defaultContentLanguageInSubdir = false  # Русский в корне /
   defaultTheme = "auto"
   displayFullLangName = false  # Показывает "RU" / "EN" вместо полных названий
 
+# Настройки поиска
+[params.fuseOpts]
+  isCaseSensitive = false
+  shouldSort = true
+  location = 0
+  distance = 1000
+  threshold = 0.4
+  minMatchCharLength = 0
+  keys = ["title", "permalink", "summary", "content"]
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

@@ -1,0 +1,22 @@
+---
+title: my-article.en
+date: 2026-01-20
+draft: false
+tags:
+  - tech
+  - hugo
+description: some description
+---
+
+## Introduction
+
+
+
+## Main Content
+
+
+
+## Conclusion
+
+
+

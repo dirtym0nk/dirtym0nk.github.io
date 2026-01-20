@@ -1,0 +1,52 @@
+baseURL = 'https://dirtym0nk.github.io/'
+title = 'Мой Блог'
+theme = 'PaperMod'
+
+# Языковые настройки
+defaultContentLanguage = 'ru'
+defaultContentLanguageInSubdir = false  # Русский в корне /
+
+[languages]
+  [languages.ru]
+    languageCode = 'ru-RU'
+    languageName = 'Русский'
+    weight = 1
+    
+    [languages.ru.params]
+      homeInfoParams.Title = "Привет 👋"
+      homeInfoParams.Content = "Это мой личный блог"
+    
+    [[languages.ru.menu.main]]
+      name = "Архив"
+      url = "/archives/"
+      weight = 10
+    [[languages.ru.menu.main]]
+      name = "Теги"
+      url = "/tags/"
+      weight = 20
+
+  [languages.en]
+    languageCode = 'en-US'
+    languageName = 'English'
+    weight = 2
+    
+    [languages.en.params]
+      homeInfoParams.Title = "Hello 👋"
+      homeInfoParams.Content = "This is my personal blog"
+    
+    [[languages.en.menu.main]]
+      name = "Archive"
+      url = "/en/archives/"
+      weight = 10
+    [[languages.en.menu.main]]
+      name = "Tags"
+      url = "/en/tags/"
+      weight = 20
+
+[params]
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  defaultTheme = "auto"
+  displayFullLangName = false  # Показывает "RU" / "EN" вместо полных названий
+

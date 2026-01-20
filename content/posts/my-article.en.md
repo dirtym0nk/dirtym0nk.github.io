@@ -1,5 +1,5 @@
 ---
-title: my-article.en
+title: Test title en
 date: 2026-01-20
 draft: false
 tags:

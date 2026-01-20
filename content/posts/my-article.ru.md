@@ -1,5 +1,5 @@
 ---
-title: my-article.ru
+title: Тестовое название на русском
 date: 2026-01-20
 draft: false
 tags:

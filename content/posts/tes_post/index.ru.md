@@ -20,7 +20,7 @@ description: ""
 
 Проверка отображения картинок
 
-![Alt текст](./media/kit.jpeg)
+![Alt текст|400](./media/kit.jpeg)
 
 Проверка отображения кода
 ```python

@@ -19,7 +19,8 @@ description: ""
 {{< youtube jxYeh6fR28c >}}
 
 Проверка отображения картинок
-`![Alt текст](`./media/kit.jpeg`)`
+
+![Alt текст|400](./media/kit.jpeg)
 
 Проверка отображения кода
 ```python

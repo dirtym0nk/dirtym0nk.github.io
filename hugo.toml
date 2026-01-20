@@ -2,6 +2,9 @@ baseURL = 'https://dirtym0nk.github.io/'
 title = 'Мой Блог'
 theme = 'PaperMod'
 
+# Игнорировать шаблоны Obsidian
+ignoreFiles = ['content/_templates/']
+
 # Языковые настройки
 defaultContentLanguage = 'ru'
 defaultContentLanguageInSubdir = false  # Русский в корне /

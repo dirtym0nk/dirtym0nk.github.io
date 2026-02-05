@@ -7,16 +7,3 @@ tags:
   - hugo
 description: some description
 ---
-
-## Introduction
-
-
-
-## Main Content
-
-
-
-## Conclusion
-
-
-

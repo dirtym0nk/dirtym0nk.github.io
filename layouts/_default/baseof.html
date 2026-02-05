@@ -13,7 +13,7 @@
 
     <!-- Theme CSS -->
     {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $css.Permalink }}">
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
     <!-- RSS -->
     {{ range .AlternativeOutputFormats -}}

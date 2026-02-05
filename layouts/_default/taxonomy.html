@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="list-page">
+    <header class="list-header">
+        <h1 class="list-title">{{ if eq .Lang "ru" }}Тег:{{ else }}Tag:{{ end }} {{ .Title }}</h1>
+        <p class="list-description">{{ len .Pages }} {{ if eq .Lang "ru" }}{{ if eq (len .Pages) 1 }}запись{{ else }}записей{{ end }}{{ else }}{{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}{{ end }}</p>
+    </header>
+
+    <div class="posts-list">
+        {{ range .Pages }}
+        <article class="post-card">
+            <a href="{{ .Permalink }}" class="post-link">
+                <div class="post-meta">
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                </div>
+                <h3 class="post-title">{{ .Title }}</h3>
+                {{ if .Description }}
+                <p class="post-excerpt">{{ .Description }}</p>
+                {{ end }}
+            </a>
+        </article>
+        {{ end }}
+    </div>
+</div>
+{{ end }}

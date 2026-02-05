@@ -1,0 +1,48 @@
+{{ define "main" }}
+<div class="list-page">
+    <header class="list-header">
+        <h1 class="list-title">{{ .Title }}</h1>
+        {{ if .Description }}
+        <p class="list-description">{{ .Description }}</p>
+        {{ end }}
+    </header>
+
+    {{ if eq .Layout "search" }}
+    <!-- Search Page -->
+    <div class="search-container">
+        <input type="text" id="search-input" class="search-input" placeholder="{{ if eq .Lang "ru" }}Поиск...{{ else }}Search...{{ end }}" autofocus>
+        <div id="search-results" class="search-results"></div>
+    </div>
+    {{ else }}
+    <!-- Regular List Page -->
+    <div class="posts-list">
+        {{ $paginator := .Paginate .Pages 10 }}
+        {{ range $paginator.Pages }}
+        <article class="post-card">
+            <a href="{{ .Permalink }}" class="post-link">
+                <div class="post-meta">
+                    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+                </div>
+                <h3 class="post-title">{{ .Title }}</h3>
+                {{ if .Description }}
+                <p class="post-excerpt">{{ .Description }}</p>
+                {{ end }}
+            </a>
+        </article>
+        {{ end }}
+    </div>
+
+    {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination">
+        {{ if $paginator.HasPrev }}
+        <a href="{{ $paginator.Prev.URL }}" class="pagination-link prev">&larr; {{ if eq .Lang "ru" }}Назад{{ else }}Previous{{ end }}</a>
+        {{ end }}
+        <span class="pagination-info">{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
+        {{ if $paginator.HasNext }}
+        <a href="{{ $paginator.Next.URL }}" class="pagination-link next">{{ if eq .Lang "ru" }}Далее{{ else }}Next{{ end }} &rarr;</a>
+        {{ end }}
+    </nav>
+    {{ end }}
+    {{ end }}
+</div>
+{{ end }}

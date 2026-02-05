@@ -1,0 +1,55 @@
+{{ define "main" }}
+<div class="list-page tags-page">
+    <header class="list-header">
+        <h1 class="list-title">{{ .Title }}</h1>
+        <p class="list-description">{{ if eq .Lang "ru" }}Все теги на сайте{{ else }}All tags on this site{{ end }}</p>
+    </header>
+
+    <div class="tags-cloud">
+        {{ range .Data.Terms.Alphabetical }}
+        <a href="{{ .Page.Permalink }}" class="tag-item">
+            <span class="tag-name">{{ .Page.Title }}</span>
+            <span class="tag-count">{{ .Count }}</span>
+        </a>
+        {{ end }}
+    </div>
+</div>
+
+<style>
+.tags-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.tag-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    color: var(--text-primary);
+}
+
+.tag-item:hover {
+    border-color: var(--accent);
+    background: var(--bg-card-hover);
+}
+
+.tag-name {
+    font-weight: 500;
+}
+
+.tag-count {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    background: var(--bg-tertiary);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
+}
+</style>
+{{ end }}

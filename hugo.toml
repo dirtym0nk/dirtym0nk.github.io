@@ -1,6 +1,6 @@
 baseURL = 'https://dirtym0nk.github.io/'
 title = 'Bolshoy Leha'
-theme = 'PaperMod'
+# theme = 'PaperMod'  # Using custom layouts instead
 
 # Игнорировать шаблоны Obsidian
 ignoreFiles = ['content/_templates/']

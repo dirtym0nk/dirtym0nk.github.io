@@ -1,0 +1,83 @@
+{{ define "main" }}
+<div class="list-page">
+    <header class="list-header">
+        <h1 class="list-title">{{ .Title }}</h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="search-input" class="search-input" placeholder="{{ if eq .Lang "ru" }}Введите запрос...{{ else }}Type to search...{{ end }}" autofocus>
+        <div id="search-results" class="search-results posts-list"></div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+<script>
+(function() {
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    let fuse = null;
+    let data = [];
+
+    // Fetch search index
+    fetch('{{ .Site.Home.RelPermalink }}index.json')
+        .then(response => response.json())
+        .then(json => {
+            data = json;
+            fuse = new Fuse(data, {
+                keys: ['title', 'content', 'summary'],
+                includeScore: true,
+                threshold: {{ .Site.Params.fuseOpts.threshold | default 0.4 }},
+                ignoreLocation: true
+            });
+        })
+        .catch(err => console.error('Search index load error:', err));
+
+    function formatDate(dateStr) {
+        const date = new Date(dateStr);
+        return date.toLocaleDateString('{{ .Lang }}', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+    }
+
+    function renderResults(results) {
+        if (results.length === 0) {
+            searchResults.innerHTML = '<p class="no-results" style="color: var(--text-muted); text-align: center; padding: 2rem;">{{ if eq .Lang "ru" }}Ничего не найдено{{ else }}No results found{{ end }}</p>';
+            return;
+        }
+
+        const html = results.map(result => {
+            const item = result.item;
+            return `
+                <article class="post-card">
+                    <a href="${item.permalink}" class="post-link">
+                        <div class="post-meta">
+                            <time>${formatDate(item.date)}</time>
+                        </div>
+                        <h3 class="post-title">${item.title}</h3>
+                        ${item.summary ? `<p class="post-excerpt">${item.summary}</p>` : ''}
+                    </a>
+                </article>
+            `;
+        }).join('');
+
+        searchResults.innerHTML = html;
+    }
+
+    searchInput.addEventListener('input', function() {
+        const query = this.value.trim();
+
+        if (!query) {
+            searchResults.innerHTML = '';
+            return;
+        }
+
+        if (fuse) {
+            const results = fuse.search(query).slice(0, 10);
+            renderResults(results);
+        }
+    });
+})();
+</script>
+{{ end }}
